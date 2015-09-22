@@ -13,10 +13,10 @@ def home_page(request):
     #item.text = request.POST.get('item_text', '')
     #item.save()
 
-    if request.method == 'POST':
+    #if request.method == 'POST':
 
-        Item.objects.create(text=request.POST['item_text'])
-        return redirect('/lists/the-only-list-in-the-world/')
+     #   Item.objects.create(text=request.POST['item_text'])
+      #  return redirect('/lists/the-only-list-in-the-world/')
 
     items = Item.objects.all()
     countsItem = Item.objects.count()
@@ -41,3 +41,7 @@ def view_list(request):
     items = Item.objects.all()
     return render(request, 'list.html', {'items': items})
 
+def new_list(request):
+#    pass
+    Item.objects.create(text=request.POST['item_text'])  
+    return redirect('/lists/the-only-list-in-the-world/')
