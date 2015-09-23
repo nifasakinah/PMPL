@@ -19,13 +19,13 @@ def home_page(request):
       #  return redirect('/lists/the-only-list-in-the-world/')
 
     items = Item.objects.all()
-    countsItem = Item.objects.count()
+    #countsItem = Item.objects.count()
     comment = 'yey, waktunya berlibur'
 
-    if countsItem > 0:
-        comment = 'sibuk tapi santai'
-    if countsItem >= 5:
-        comment = 'oh tidak'
+    #if countsItem > 0:
+     #   comment = 'sibuk tapi santai'
+    #if countsItem >= 5:
+     #   comment = 'oh tidak'
     return render(request, 'home.html', {'comment': comment})
     #return render(request, 'home.html')
         #new_item_text = request.POST['item_text']  #1
@@ -39,7 +39,16 @@ def home_page(request):
     #})
 def view_list(request, list_id):
     list_ = List.objects.get(id=list_id)
-    return render(request, 'list.html', {'list': list_})
+    #return render(request, 'list.html', {'list': list_})
+    comment = ''
+    if Item.objects.filter(list_id=list_.id).count() == 0 :
+        comment = 'yey, waktunya berlibur'
+    elif (Item.objects.filter(list_id=list_.id).count() > 0) and (Item.objects.filter(list_id=list_.id).count() < 5) :
+        comment = 'sibuk tapi santai'
+    else :
+        comment = 'oh tidak'
+
+    return render(request, 'list.html', {'list': list_, 'comment':comment})
     #items = Item.objects.filter(list=list_)
     #items = Item.objects.all()
     #return render(request, 'list.html', {'items': items})
