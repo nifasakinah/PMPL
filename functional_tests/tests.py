@@ -1,9 +1,11 @@
-from django.test import LiveServerTestCase
+#from django.test import LiveServerTestCase
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import unittest
 
-class NewVisitorTest(LiveServerTestCase):
+class NewVisitorTest(StaticLiveServerTestCase):
+#class NewVisitorTest(LiveServerTestCase):
 #class NewVisitorTest(unittest.TestCase):  
 
     def setUp(self):  
