@@ -12,7 +12,7 @@
     <div class="container">
 
     <div class="row">
-        <div class="col-md-6 col-md-offset-3 jumbotron">
+        <div class="col-md-3 col-md-offset-6 jumbotron">
             <div class="text-center">
                 <h1>{% block header_text %}PMPL{% endblock %}</h1>
                 <form method="POST" action="{% block form_action %}{% endblock %}">                   
@@ -21,7 +21,6 @@
                     />
                     {% csrf_token %}
                 </form>
-                {{comment}}
             </div>
         </div>
     </div>
@@ -42,3 +41,4 @@
 
 
 </html>
+
