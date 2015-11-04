@@ -116,6 +116,6 @@ ALLOWED_HOSTS = ['*']
 
 # STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR1, '../static'))
+STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
 
 
