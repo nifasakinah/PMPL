@@ -23,7 +23,9 @@ def list_page(request):
     return render(request, 'base.html', {'comment': comment})
 def view_list(request, list_id):
     list_ = List.objects.get(id=list_id)
-    #return render(request, 'list.html', {'list': list_})
+    if request.method == 'POST':
+    	Item.objects.create(text=request.POST['item_text'], list=list_)
+    	return redirect('/lists/%d/' % (list_.id,))
     comment = ''
     if Item.objects.filter(list_id=list_.id).count() == 0 :
         comment = 'yey, waktunya berlibur'
@@ -31,7 +33,7 @@ def view_list(request, list_id):
         comment = 'sibuk tapi santai'
     else :
         comment = 'oh tidak'
-
+        
     return render(request, 'list.html', {'list': list_, 'comment':comment})
     #items = Item.objects.filter(list=list_)
     #items = Item.objects.all()
@@ -48,7 +50,7 @@ def new_list(request):
         error = "You can't have an empty list item"
         return render(request, 'home.html', {"error": error})
     return redirect('/lists/%d/' % (list_.id,))
-    
+
 def add_item(request, list_id):
     #pass
     list_ = List.objects.get(id=list_id)
